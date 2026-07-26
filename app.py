@@ -89,7 +89,7 @@ def extract_cmrf_pdf_data(pdf_file, api_key):
     """
 
     # Tested working model endpoints for google-genai SDK
-    candidate_models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-latest"]
+    candidate_models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
     response_text = None
     last_error = None
 
