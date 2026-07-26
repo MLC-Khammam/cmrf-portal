@@ -8,10 +8,8 @@ from google.genai import types
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="CMRF Application Portal", page_icon="📑", layout="wide")
 
-# Secrets Configuration
 GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY", "")
 
-# Login User Database
 USERS = {
     "admin": {"password": "adminpassword123", "role": "admin", "approved": True},
     "staff1": {"password": "staffpassword123", "role": "staff", "approved": True}
@@ -57,7 +55,7 @@ def login_page():
                 st.info("Registration requested.")
 
 def extract_cmrf_pdf_data(pdf_file, api_key):
-    """Extracts CMRF data using Gemini Flash with supported model endpoints."""
+    """Extracts CMRF data using Gemini 2.0 Flash."""
     client = genai.Client(api_key=api_key)
     pdf_bytes = pdf_file.read()
     
@@ -88,8 +86,8 @@ def extract_cmrf_pdf_data(pdf_file, api_key):
     }
     """
 
-    # Tested working model endpoints for google-genai SDK
-    candidate_models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+    # Primary active model IDs in google-genai SDK
+    candidate_models = ["gemini-2.0-flash", "gemini-1.5-flash"]
     response_text = None
     last_error = None
 
