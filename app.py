@@ -57,12 +57,12 @@ def login_page():
                 st.info("Registration requested.")
 
 def extract_cmrf_pdf_data(pdf_file, api_key):
-    """Uses Gemini 2.0 Flash to extract CMRF details visual structure."""
+    """Extracts CMRF data using Gemini Flash with supported model endpoints."""
     client = genai.Client(api_key=api_key)
     pdf_bytes = pdf_file.read()
     
     prompt = """
-    Extract all information from this Telangana CMRF Application Form accurately.
+    Extract all details from this Telangana CMRF Application form accurately into JSON.
     Return ONLY a raw JSON object with these exact keys:
     {
       "token_no": "CMRF Token Number",
@@ -88,7 +88,8 @@ def extract_cmrf_pdf_data(pdf_file, api_key):
     }
     """
 
-    candidate_models = ["gemini-2.0-flash", "gemini-1.5-flash"]
+    # Tested working model endpoints for google-genai SDK
+    candidate_models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-latest"]
     response_text = None
     last_error = None
 
